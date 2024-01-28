@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list example</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 8px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>My shopping list</h1>
+
+    <div>
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item">
+      <button>Add item</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <script>
+        const shoppingList = document.querySelector('ul');
+        const userInput = document.querySelector('input');
+        const inputButton = document.querySelector('button');
+
+        inputButton.addEventListener('click', (event) => {
+            const newItem = userInput.value; // Esto toma el valor del formulario y lo guarda en una variable.
+            userInput.value = "";
+
+            const newListElement = document.createElement('li');
+            const newSpan = document.createElement('span');
+            const newButton = document.createElement('button');
+
+            newSpan.textContent = newItem;
+            newButton.textContent = "Delete";
+
+            newListElement.appendChild(newSpan);
+            newListElement.appendChild(newButton);
+
+            shoppingList.appendChild(newListElement);
+
+            newButton.addEventListener('click', (event) => {
+                event.target.parentElement.remove();
+            })
+
+            userInput.focus();
+        })
+    </script>
+  </body>
+</html>
